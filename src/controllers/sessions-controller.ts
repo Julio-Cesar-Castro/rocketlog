@@ -35,9 +35,10 @@ export class SessionsController {
       secret, {
       subject: user.id,
       expiresIn
-    }
-    )
+    })
 
-    return response.json({ token })
+    const { password: hashedPassword, ...userWithOutPassword } = user
+
+    return response.json({ token, user: userWithOutPassword })
   }
 }
